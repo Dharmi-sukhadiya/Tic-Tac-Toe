@@ -4,6 +4,7 @@ let newgamebtn=document.querySelector("#new-btn");
 let msgcontainer=document.querySelector(".msg-container");
 let msg=document.querySelector("#msg");
 let turnO=true; //playex,playerO
+//let count=0; to track draw
 
 const winpattern=[
     [0,1,2],
@@ -16,9 +17,9 @@ const winpattern=[
     [6,7,8]
 ];
 const resetgame=()=>{
-    turnO=true;
+    turnO=true;   //+count=0;
     enableboxes();
-    msgcontainer.classList.add("hide")
+    msgcontainer.classList.add("hide");
 }
  
 boxes.forEach((box)=>{
@@ -32,11 +33,11 @@ boxes.forEach((box)=>{
             box.innerText="x";
             turnO=true;
         }
-        box.disabled=true;
-        checkwinner();
+        box.disabled=true; //count++
+        checkwinner(); //let iswinner=checkwinner(); if(count===9 && !iswinner){gamedraw();}
     });
 });
-
+// const gamedraw=()=>{msg.innertext=`game was draw`; msgcontainer.classlist.remove("hide"); disableboxes();};
 const disableboxes=()=>{
     for(let box of boxes)
     {
@@ -69,7 +70,7 @@ const checkwinner=()=>{
         {
             if(pos1val===pos2val && pos2val===pos3val)
             {
-                console.log("winner",pos1val);
+                console.log("winner",pos1val); // return true;
                 showwinner(pos1val);
 
             }
